@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'workshop-wro';
   today = new Date();
+  isWarningShow: boolean = false;
+
+  toggleWarning() {
+    this.isWarningShow = !this.isWarningShow;
+  }
 }

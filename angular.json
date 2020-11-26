@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "workshop-wro"
+    }
+  },
+  "defaultProject": "workshop-wro",
+  "cli": {
+    "analytics": "149bc590-a8d9-4be2-a83e-c494f90f3134"
+  }
 }

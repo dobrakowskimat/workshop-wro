@@ -5,5 +5,7 @@
     <button mat-raised-button color="primary">OK</button>
     <button mat-raised-button color="accent">Dalej</button>
     <button mat-raised-button color="warn">Anuluj</button>
+    <button (click)="toggleWarning()">toggle</button>
+    <p *ngIf="isWarningShow">omamalej</p>
   </div>
 </div>

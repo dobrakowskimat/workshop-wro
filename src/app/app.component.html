@@ -6,4 +6,13 @@
     <button mat-raised-button color="accent">Dalej</button>
     <button mat-raised-button color="warn">Anuluj</button>
   </div>
+  <div>Formatted number: {{ formattedNumber | number : '.1-2'}}</div>
+  <div>Second Formatted number: {{ formattedNumber2 | number : '.2'}}</div>
+
+  <button (click)="toggleWarning()">Click me</button>
+  <p *ngIf="isWarningShow">Error!</p>
+
+  <div *ngFor="let book of books">
+    {{book.authorFullName}} - {{book.title}}
+  </div>
 </div>

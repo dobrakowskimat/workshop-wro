@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Book } from '../../models/book.model';
+import { Book, BookPayload } from '../../models/book.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -20,7 +20,11 @@ export class BooksService {
     return this.http.get<Book>(`${this.urlBooks}/${id}`);
   }
 
-  create(book: any): Observable<Book> {
+  create(book: BookPayload): Observable<BookPayload> {
     return this.http.post<Book>(this.urlBooks, book);
+  }
+
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${this.urlBooks}/${id}`);
   }
 }

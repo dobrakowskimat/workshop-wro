@@ -2,8 +2,17 @@
   <div class="mat-title">{{ title }}</div>
   <div class="mat-subheading-1" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
     <div>{{ today | date: "dd MMMM yyyy" }}</div>
+    <div>{{ 123.234234 | number: '0.2-2' }}</div>
+    <div>{{ 0.1 | number: '0.2-2' }}</div>
     <button mat-raised-button color="primary">OK</button>
     <button mat-raised-button color="accent">Dalej</button>
     <button mat-raised-button color="warn">Anuluj</button>
+  </div>
+  <button mat-raised-button color="accent" (click)="toggleWarning()">Display warning</button>
+  <p *ngIf="warningVisible">
+    Cyberpunk 2077 is going to be delayed until {{ delayDate | date: "dd/MM/yyyy" }}
+  </p>
+  <div *ngFor="let book of books">
+    <p>{{book.title}}</p>
   </div>
 </div>

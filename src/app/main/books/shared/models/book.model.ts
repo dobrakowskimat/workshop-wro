@@ -2,11 +2,11 @@ export interface Book {
   id: number;
   title: string;
   subtitle: string | null;
+  publishDate: Date;
   originallyPublishedYear: number;
-  genreIds: number[];
   seriesTitle: string | null;
   pageCount: number;
-  tagsIds: number[];
   description: string;
   authorFullName: string;
+  createDateUtc: Date;
 }

@@ -5,5 +5,12 @@
     <button mat-raised-button color="primary">OK</button>
     <button mat-raised-button color="accent">Dalej</button>
     <button mat-raised-button color="warn">Anuluj</button>
+    <div>{{ num1 | number: ".2-2" }}</div>
+    <div>{{ num2 | number: ".2-2" }}</div>
   </div>
+    <button (click)="toggleWarning()" >Show Warning</button>
+    <p *ngIf="showflag">I won the election!</p>
+    <div *ngFor="let book of books">
+      {{book.title}}
+    </div>
 </div>

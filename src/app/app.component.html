@@ -1,9 +1,46 @@
-<div fxLayout="column" fxLayoutAlign="start center">
+<div fxLayout="column" fxLayoutAlign="space-around center">
   <div class="mat-title">{{ title }}</div>
-  <div class="mat-subheading-1" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <div
+    class="mat-subheading-1"
+    fxLayout="row"
+    fxLayoutAlign="space-evenly center"
+    fxLayoutGap="20px"
+  >
     <div>{{ today | date: "dd MMMM yyyy" }}</div>
-    <button mat-raised-button color="primary">OK</button>
-    <button mat-raised-button color="accent">Dalej</button>
-    <button mat-raised-button color="warn">Anuluj</button>
+    <button mat-raised-button color="accent" (click)="addBook()">
+      Add new book
+    </button>
+  </div>
+
+  <ng-container *ngIf="books$ | async as books">
+    <div
+      *ngFor="let book of books"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="20px"
+      style="width: 800px"
+    >
+      <div class="mat-subheading-1">{{ book.title }}</div>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <button mat-raised-button color="accent" (click)="showDetails(book.id)">
+          Show details
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteBook(book.id)">
+          Delete book
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <div
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="20px"
+    class="mat-title"
+    *ngIf="book$ | async as book"
+  >
+    <div>{{ book.title }}</div>
+    <div>{{ book.authorFullName }}</div>
+    <div>{{ book.originallyPublishedYear }}</div>
   </div>
 </div>

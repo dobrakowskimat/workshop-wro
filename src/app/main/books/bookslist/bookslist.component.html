@@ -1,3 +1,6 @@
-<ul>
-  <app-book *ngFor="let book of books" class="book" [childBook]="book"></app-book>
-</ul>
+<!-- <ul>
+  <app-book *ngFor="let book of books$ | async" class="book" [childBook]="book" (bookDeleted)="deleteBook($event)"></app-book>
+</ul> -->
+<div *ngFor="let book of books$ | async">
+  <app-book class="book" [childBook]="book" (bookDeleted)="deleteBook($event)"></app-book>
+</div>

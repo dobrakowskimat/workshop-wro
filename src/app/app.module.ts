@@ -10,9 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
 
 import '@angular/common/locales/global/pl';
 import { HttpClientModule } from '@angular/common/http';
+import { BookslistComponent } from './main/books/bookslist/bookslist.component';
+import { BookComponent } from './main/books/book/book.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, BookslistComponent, BookComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

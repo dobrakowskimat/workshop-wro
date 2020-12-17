@@ -4,19 +4,22 @@ import { Book } from '../shared/models/book.model';
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  styleUrls: ['./book.component.scss'],
 })
 export class BookComponent implements OnInit {
-
   @Input() childBook: Book;
   @Output() bookDeleted = new EventEmitter<Book>();
+  @Output() selectBook = new EventEmitter<Book>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   deleteBook(book: Book) {
     this.bookDeleted.emit(book);
+  }
+
+  showDetails(book: Book) {
+    this.selectBook.emit(book);
   }
 }

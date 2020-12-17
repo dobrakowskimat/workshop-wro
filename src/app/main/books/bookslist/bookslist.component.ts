@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BooksService } from 'src/app/services/books.service';
@@ -12,6 +18,7 @@ import { Book, BookPayload } from '../shared/models/book.model';
 export class BookslistComponent implements OnInit, OnDestroy {
   books$: Observable<Book[]>;
   subscription = new Subscription();
+  @Output() selectedBook = new EventEmitter<Book>();
 
   constructor(private booksService: BooksService) {}
 
@@ -54,5 +61,9 @@ export class BookslistComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  selectBook(book: Book) {
+    this.selectedBook.emit(book);
   }
 }

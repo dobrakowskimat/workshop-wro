@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
+import { View } from './main/books/shared/enums';
 import { Book, BookPayload } from './main/books/shared/models/book.model';
 import { BooksService } from './main/books/shared/services/books/books.service';
 
@@ -14,6 +15,9 @@ export class AppComponent implements OnInit, OnDestroy {
   today = new Date();
   books$: Observable<Book[]>;
   book$: Observable<Book>;
+  selectedBook: Book;
+  view = View;
+  routeValue: View;
   private subsription = new Subscription();
   private booksUpdated$ = new BehaviorSubject(null);
   private showDetails$ = new Subject<string>();
@@ -27,6 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.book$ = this.showDetails$.pipe(
       switchMap((id) => this.booksService.get(id))
     );
+    this.routeValue = this.view.BookList;
   }
 
   ngOnDestroy(): void {
@@ -65,5 +70,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   showDetails(id: string): void {
     this.showDetails$.next(id);
+  }
+
+  selectBook(book: Book) {
+    this.selectedBook = book;
+    this.routeValue = this.view.BookDetails;
   }
 }

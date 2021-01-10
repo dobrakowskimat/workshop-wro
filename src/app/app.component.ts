@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   today = new Date();
   books$: Observable<Book[]>;
   book$: Observable<Book>;
+  shoppingCard: Book[] = [];
   selectedBook: Book;
   view = View;
   routeValue: View;
@@ -78,4 +79,20 @@ export class AppComponent implements OnInit, OnDestroy {
   navigateTo(viewSelected : View) {
     this.routeValue = viewSelected;
   }
+
+  selectBook(book: Book) {
+    this.routeValue = View.BookDetails;
+    this.selectedBook = book;
+  }
+
+  bookAddedToShoppingCard(book: Book) {
+    this.shoppingCard.push(book);
+  }
+
+  bookRemovedFromShoppingCart(book: Book) {
+    const index: number = this.shoppingCard.findIndex(item => item.id == book.id);
+    if (index !== -1) {
+      this.shoppingCard.splice(index, 1);
+  }
+}
 }

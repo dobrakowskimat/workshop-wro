@@ -2,6 +2,6 @@
 
 <div [ngSwitch]="routeValue">
   <app-bookslist (selectedBook)="selectBook($event)" *ngSwitchCase="view.BookList"></app-bookslist>
-  <app-book-details [selectedBook]="selectedBook" *ngSwitchCase="view.BookDetails"></app-book-details>
-  <app-shopping-cart *ngSwitchCase="view.ShoppingCart">...</app-shopping-cart>
+  <app-book-details [selectedBook]="selectedBook" (selectedBookToShoppingCard)="bookAddedToShoppingCard($event)" *ngSwitchCase="view.BookDetails"></app-book-details>
+  <app-shopping-cart [bookListInShoppingCart]="shoppingCard" (bookRemoved)="bookRemovedFromShoppingCart($event)" *ngSwitchCase="view.ShoppingCart">...</app-shopping-cart>
 </div>

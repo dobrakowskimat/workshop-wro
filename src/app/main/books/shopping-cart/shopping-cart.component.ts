@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Book } from '../shared/models/book.model';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,7 +10,14 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor() { }
 
+  @Input() bookListInShoppingCart: Book[];
+  @Output() bookRemoved = new EventEmitter<Book>();
+
   ngOnInit(): void {
+  }
+
+  bookRemovedFromShoppingCart(book : Book) {
+    this.bookRemoved.emit(book);
   }
 
 }

@@ -86,7 +86,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   bookAddedToShoppingCard(book: Book) {
-    this.shoppingCard.push(book);
+    this.shoppingCard.indexOf(book) === -1 ? this.shoppingCard.push(book) : console.log("This book already in shopping cart");
   }
 
   bookRemovedFromShoppingCart(book: Book) {

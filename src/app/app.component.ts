@@ -1,88 +1,69 @@
-import { Component } from '@angular/core';
-import { Book } from './main/books/shared/models/book.model';
-
-
-const booksMock: Book[] = [
-  {
-    id: 1,
-    title: 'The Great Gatsby',
-    subtitle: '',
-    originallyPublishedYear: 1925,
-    genreIds: [1],
-    seriesTitle: null,
-    pageCount: 218,
-    tagsIds: [1, 5],
-    description:
-      'The Great Gatsby is a 1925 novel written by American author F. Scott Fitzgerald that follows a cast of characters living in the fictional towns of West Egg and East Egg on prosperous Long Island in the summer of 1922.',
-    authorFullName: 'Francis Scott Fitzgerald',
-  },
-  {
-    id: 2,
-    title: 'Great Expectations',
-    subtitle: '',
-    originallyPublishedYear: 1860,
-    genreIds: [1],
-    seriesTitle: null,
-    pageCount: 432,
-    tagsIds: [1],
-    description:
-      'Great Expectations is the thirteenth novel by Charles Dickens and his penultimate completed novel, which depicts the education of an orphan nicknamed Pi',
-    authorFullName: 'Charles Dickens',
-  },
-  {
-    id: 3,
-    title: 'One Hundred Years of Solitude',
-    subtitle: '',
-    originallyPublishedYear: 1967,
-    genreIds: [6],
-    seriesTitle: null,
-    pageCount: 432,
-    tagsIds: [1, 3],
-    description:
-      'One Hundred Years of Solitude is a landmark 1967 novel by Colombian author Gabriel García Márquez that tells the multi-generational story of the Buendía family.',
-    authorFullName: 'Gabriel Garcia Marque',
-  },
-  {
-    id: 4,
-    title: 'Dune',
-    subtitle: '',
-    originallyPublishedYear: 1965,
-    genreIds: [8],
-    seriesTitle: null,
-    pageCount: 412,
-    tagsIds: [1, 3],
-    description:
-      'Dune is a 1965 science-fiction novel by American author Frank Herbert, originally published as two separate serials in Analog magazine. It tied with Roger Zelaznys This Immortal for the Hugo Award in 1966, and it won the inaugural Nebula Award for Best Novel.',
-    authorFullName: 'Frank Herbert',
-  },
-  {
-    id: 5,
-    title: 'Pride and Prejudice',
-    subtitle: '',
-    originallyPublishedYear: 1813,
-    genreIds: [8],
-    seriesTitle: null,
-    pageCount: 380,
-    tagsIds: [1, 7],
-    description:
-      'The book is narrated in free indirect speech following the main character Elizabeth Bennet as she deals with matters of upbringing, marriage, moral rightness and education in her aristocratic society.',
-    authorFullName: 'Jane Austen',
-  },
-];
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
+import { Book, BookPayload } from './main/books/shared/models/book.model';
+import { BooksService } from './main/books/shared/services/books/books.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'Angular Workshops with Avanade';
+export class AppComponent implements OnInit, OnDestroy {
+  title = 'workshop-wro';
   today = new Date();
-  isWarningShow: boolean = false;
-  books: Book[] = booksMock;
+  books$: Observable<Book[]>;
+  book$: Observable<Book>;
+  private subsription = new Subscription();
+  private booksUpdated$ = new BehaviorSubject(null);
+  private showDetails$ = new Subject<string>();
 
-  toggleWarning()  {
-    this.isWarningShow = !this.isWarningShow;
+  constructor(private readonly booksService: BooksService) {}
+
+  ngOnInit(): void {
+    this.books$ = this.booksUpdated$.pipe(
+      switchMap(() => this.booksService.getAll())
+    );
+    this.book$ = this.showDetails$.pipe(
+      switchMap((id) => this.booksService.get(id))
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subsription.unsubscribe();
+  }
+
+  addBook(): void {
+    const book = {
+      title: 'The Grapes of Wrath',
+      subtitle: null,
+      originallyPublishedYear: 1939,
+      seriesTitle: null,
+      pageCount: 430,
+      description:
+        'The Grapes of Wrath is set in the Great Depression and describes a family of sharecroppers, the Joads, who were driven from their land due to the dust storms of the Dust Bowl.',
+      authorFullName: 'John Stainbeck',
+      publishDate: new Date('2014-08-17'),
+    } as BookPayload;
+
+    this.subsription.add(
+      this.booksService
+        .create(book)
+        .pipe(tap(() => this.booksUpdated$.next(null)))
+        .subscribe()
+    );
+  }
+
+  deleteBook(id: string): void {
+    this.subsription.add(
+      this.booksService
+        .delete(id)
+        .pipe(tap(() => this.booksUpdated$.next(null)))
+        .subscribe()
+    );
+  }
+
+  showDetails(id: string): void {
+    this.showDetails$.next(id);
   }
 }

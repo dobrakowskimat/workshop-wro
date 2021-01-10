@@ -1,0 +1,20 @@
+<div fxLayout="column" fxLayoutAlign="start center">
+  <div class="mat-title">{{ title }}</div>
+  <div class="mat-subheading-1" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <div>{{ today | date: "dd MMMM yyyy" }}</div>
+    <button mat-raised-button color="primary">OK</button>
+    <button mat-raised-button color="accent">Dalej</button>
+    <button mat-raised-button color="warn">Anuluj</button>
+
+  </div>
+
+  <div class="mat-subheading-1" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <button (click)="toggleWarning()" mat-raised-button color="primary">Top Secret, don't click!</button>
+    <h2 *ngIf="isWarningShow">I said don't click...</h2>
+  </div>
+
+  <h2>List of books:</h2>
+  <ul *ngFor="let book of books">
+    <li>{{book.id}}. {{book.title}}</li>
+  </ul>
+</div>

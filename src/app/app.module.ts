@@ -13,9 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BookslistComponent } from './main/books/bookslist/bookslist.component';
 import { BookComponent } from './main/books/book/book.component';
 import { BookDetailsComponent } from './main/books/book-details/book-details.component';
+import { ShoppingCartComponent } from './main/books/shopping-cart/shopping-cart.component';
+import { NavigationComponent } from './main/navigation/navigation.component';
 
 @NgModule({
-  declarations: [AppComponent, BookslistComponent, BookComponent, BookDetailsComponent],
+  declarations: [AppComponent, BookslistComponent, BookComponent, BookDetailsComponent, ShoppingCartComponent, NavigationComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

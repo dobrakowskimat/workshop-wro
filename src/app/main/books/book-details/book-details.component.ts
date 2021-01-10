@@ -1,30 +1,18 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs';
-import { BooksService } from 'src/app/services/books.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { Book } from '../shared/models/book.model';
 
 @Component({
   selector: 'app-book-details',
   templateUrl: './book-details.component.html',
-  styleUrls: ['./book-details.component.scss']
+  styleUrls: ['./book-details.component.scss'],
 })
-export class BookDetailsComponent implements OnInit, OnChanges {
+export class BookDetailsComponent implements OnInit {
 
-  @Input() bookId: number | null;
-  // @Input() set bookId(value: number) {
-  //   this.book$ = this.bookService.getBookById(value);
-  // }
+  @Input() selectedBook: Book;
 
-  book$: Observable<Book>;
+  constructor() {}
 
-  constructor(private bookService: BooksService) { }
-  ngOnChanges(changes: SimpleChanges): void {
-    if(changes.bookId) {
-      this.book$ = this.bookService.getBookById(changes.bookId.currentValue as number)
-    }
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
 
 }

@@ -5,26 +5,18 @@ import { environment } from 'src/environments/environment';
 import { Book, BookPayload } from '../main/books/shared/models/book.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BooksService {
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   apiUrl: string = environment.apiUrl;
 
-  getBooks() : Observable<Book[]> {
-    return this.httpClient.get<Book[]>(
-      `${this.apiUrl}books`
-    );
-    }
-    addBook(book: BookPayload): Observable<BookPayload> {
-      return this.httpClient.post<Book>(`${this.apiUrl}books`, book);
-    }
+  getBooks(): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(`${this.apiUrl}/books`);
+  }
 
-    getBookById(id: number): Observable<Book> {
-      return this.httpClient.get<Book>(
-        `${this.apiUrl}books/${id}`
-      );
-    }
+  addBook(book: BookPayload): Observable<Book> {
+    return this.httpClient.post<Book>(`${this.apiUrl}/books`, book);
+  }
 }

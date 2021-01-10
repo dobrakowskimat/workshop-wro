@@ -1,4 +1,15 @@
-<div *ngIf="book$ | async as book">
-  <h1>{{book.title}}</h1>
-  <h2>{{book.authorFullName}}</h2>
+<div class="container">
+
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">{{ selectedBook.title }}</h2>
+      <div><b>SubTitle:</b> {{ selectedBook.subtitle || "---" }}</div>
+      <div><b>Orginal Published Yead:</b> {{ selectedBook.originallyPublishedYear }}</div>
+      <div><b>Series Title:</b> {{ selectedBook.seriesTitle }}</div>
+      <div><b>Page Count:</b> {{ selectedBook.pageCount }}</div>
+      <div><b>Description:</b> {{ selectedBook.description }}</div>
+      <div><b>Author:</b> {{ selectedBook.authorFullName }}</div>
+    </div>
+  </div>
 </div>

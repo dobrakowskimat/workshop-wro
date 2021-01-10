@@ -1,10 +1,19 @@
-<p>shopping-cart works!</p>
+<div class="mt-5">
 
-<div *ngFor="let book of bookListInShoppingCart">
-  <app-book-in-shopping-cart
-    [childBook]="book"
-    (bookRemoved)="bookRemovedFromShoppingCart($event)"
-  ></app-book-in-shopping-cart>
-</div>
-<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody >
+        <tr app-book-in-shopping-cart
+        *ngFor="let book of bookListInShoppingCart"
+          class="book"
+          [childBook]="book"
+          (bookRemoved)="bookRemovedFromShoppingCart($event)"
+        ></tr>
+  </tbody>
+  </table>
 </div>

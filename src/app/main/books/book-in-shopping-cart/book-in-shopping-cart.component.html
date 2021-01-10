@@ -1,8 +1,5 @@
-<div>
-  <div>{{ childBook.title }}</div>
-  <div>{{ childBook.subtitle }}</div>
-  <button mat-flat-button color="primary" (click)="removeFromShoppingCart(childBook)">
-    delete
-  </button>
-  <!-- <button mat-flat-button (click)="showDetails(childBook)">show details</button> -->
-</div>
+<td>{{ childBook.title }}</td>
+<td>
+  <button type="button" class="btn btn-danger btn-sm" (click)="removeFromShoppingCart(childBook)">Delete</button>
+</td>
+

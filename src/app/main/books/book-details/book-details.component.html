@@ -1,16 +1,17 @@
-<div class="container">
+<div class="container mt-5">
 
 
   <div class="card">
     <div class="card-body">
       <h2 class="card-title">{{ selectedBook.title }}</h2>
-      <div><b>SubTitle:</b> {{ selectedBook.subtitle || "---" }}</div>
-      <div><b>Orginal Published Yead:</b> {{ selectedBook.originallyPublishedYear }}</div>
-      <div><b>Series Title:</b> {{ selectedBook.seriesTitle }}</div>
-      <div><b>Page Count:</b> {{ selectedBook.pageCount }}</div>
-      <div><b>Description:</b> {{ selectedBook.description }}</div>
-      <div><b>Author:</b> {{ selectedBook.authorFullName }}</div>
-      <button mat-flat-button (click)="addToShoppingCard(selectedBook)">Add to shopping cart</button>
+      <div><b>SubTitle:</b><br/> {{ selectedBook.subtitle || "---" }}</div>
+      <div><b>Orginal Published Yead:</b><br/> {{ selectedBook.originallyPublishedYear }}</div>
+      <div><b>Series Title:</b><br/> {{ selectedBook.seriesTitle }}</div>
+      <div><b>Page Count:</b><br/> {{ selectedBook.pageCount }}</div>
+      <div><b>Description:</b><br/> {{ selectedBook.description }}</div>
+      <div><b>Author:</b><br/> {{ selectedBook.authorFullName }}</div>
+      <hr/>
+      <button type="button" class="btn btn-success" (click)="addToShoppingCard(selectedBook)">Add to shopping cart</button>
     </div>
   </div>
 </div>

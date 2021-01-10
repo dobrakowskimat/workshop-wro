@@ -1,6 +1,7 @@
 <div>
   <div>{{ childBook.title }}</div>
   <div>{{ childBook.subtitle }}</div>
-  <button mat-flat-button (click)="deleteBook(childBook)">delete</button>
+  <button mat-flat-button color="accent" (click)="showDetails(childBook)">Show details</button>
+  <button mat-flat-button color="primary" (click)="deleteBook(childBook)">Delete</button>
 </div>
 

@@ -1,6 +1,11 @@
 <!-- <ul>
   <app-book *ngFor="let book of books$ | async" class="book" [childBook]="book" (bookDeleted)="deleteBook($event)"></app-book>
 </ul> -->
+
 <div *ngFor="let book of books$ | async">
-  <app-book class="book" [childBook]="book" (bookDeleted)="deleteBook($event)"></app-book>
+  <app-book class="book" [childBook]="book" (bookDeleted)="deleteBook($event)" (bookSelected)="selectBook($event)"></app-book>
 </div>
+
+<button mat-flat-button color="primary">Add dummy Book</button>
+
+<app-book-details *ngIf="selectedBook" [bookId]="selectedBook?.id"></app-book-details>

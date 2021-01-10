@@ -10,6 +10,7 @@ export class BookComponent implements OnInit {
 
   @Input() childBook: Book;
   @Output() bookDeleted = new EventEmitter<Book>();
+  @Output() bookSelected = new EventEmitter<Book>();
 
   constructor() { }
 
@@ -18,5 +19,9 @@ export class BookComponent implements OnInit {
 
   deleteBook(book: Book) {
     this.bookDeleted.emit(book);
+  }
+
+  showDetails(book: Book) {
+    this.bookSelected.emit(book);
   }
 }

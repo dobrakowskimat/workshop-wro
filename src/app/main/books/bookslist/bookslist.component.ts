@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { of } from 'rxjs/internal/observable/of';
+import { map } from 'rxjs/operators';
+import { BooksService } from 'src/app/services/books.service';
 import { Book, BookPayload } from '../shared/models/book.model';
 
 @Component({
@@ -12,76 +14,57 @@ import { Book, BookPayload } from '../shared/models/book.model';
 export class BookslistComponent implements OnInit {
 
   books$: Observable<Book[]>;
+  subscription = new Subscription();
 
-  books: Array<Book> = bookMock;
+  selectedBook : Book;
 
-  constructor() { }
+  constructor(private bookService: BooksService) { }
 
   ngOnInit(): void {
-    this.books$ = of(bookMock);
+    this.books$ = this.bookService.getBooks().pipe(
+      //map(
+      //books => {
+        //return books.filter(book => {
+          //return book.originallyPublishedYear > 1950;
+        //})
+      // }
+    // )
+    );
   }
 
   deleteBook(book: Book) {
-    this.books = this.books.filter(
-      (b) => book.id !== book.id
+    // this.books = this.books.filter(
+    //   (b) => book.id !== book.id
+    // );
+  }
+
+  selectBook(book: Book) {
+    this.selectedBook = book;
+  }
+
+  addDummyBook() {
+      const book = {
+        title: 'The Grapes of Wrath',
+        subtitle: null,
+        originallyPublishedYear: 1939,
+        seriesTitle: null,
+        pageCount: 430,
+        description:
+          'The Grapes of Wrath is set in the Great Depression and describes a family of sharecroppers, the Joads, who were driven from their land due to the dust storms of the Dust Bowl.',
+        authorFullName: 'John Stainbeck',
+        publishDate: new Date('2014-08-17'),
+      } as BookPayload;
+
+      this.addBook(book);
+  }
+
+  addBook(book: BookPayload) {
+    this.subscription.add(this.bookService.addBook(book).subscribe(
+      res => console.log("Book successfully added"))
     );
   }
-}
 
-const bookMock = [
-  {
-    id: 1,
-    title: 'The Great Gatsby',
-    subtitle: '',
-    originallyPublishedYear: 1925,
-    seriesTitle: null,
-    pageCount: 218,
-    description:
-      'The Great Gatsby is a 1925 novel written by American author F. Scott Fitzgerald that follows a cast of characters living in the fictional towns of West Egg and East Egg on prosperous Long Island in the summer of 1922.',
-    authorFullName: 'Francis Scott Fitzgerald',
-  },
-  {
-    id: 2,
-    title: 'Great Expectations',
-    subtitle: '',
-    originallyPublishedYear: 1860,
-    seriesTitle: null,
-    pageCount: 432,
-    description:
-      'Great Expectations is the thirteenth novel by Charles Dickens and his penultimate completed novel, which depicts the education of an orphan nicknamed Pi',
-    authorFullName: 'Charles Dickens',
-  },
-  {
-    id: 3,
-    title: 'One Hundred Years of Solitude',
-    subtitle: '',
-    originallyPublishedYear: 1967,
-    seriesTitle: null,
-    pageCount: 432,
-    description:
-      'One Hundred Years of Solitude is a landmark 1967 novel by Colombian author Gabriel García Márquez that tells the multi-generational story of the Buendía family.',
-    authorFullName: 'Gabriel Garcia Marque',
-  },
-  {
-    id: 4,
-    title: 'Dune',
-    subtitle: '',
-    originallyPublishedYear: 1965,
-    seriesTitle: null,
-    pageCount: 412,
-    description:
-      'Dune is a 1965 science-fiction novel by American author Frank Herbert, originally published as two separate serials in Analog magazine. It tied with Roger Zelaznys This Immortal for the Hugo Award in 1966, and it won the inaugural Nebula Award for Best Novel.',
-    authorFullName: 'Frank Herbert',
-  },
-  {
-    id: 5,
-    title: 'Pride and Prejudice',
-    subtitle: '',
-    originallyPublishedYear: 1813,
-    seriesTitle: null,
-    pageCount: 380,
-    description:
-      'The book is narrated in free indirect speech following the main character Elizabeth Bennet as she deals with matters of upbringing, marriage, moral rightness and education in her aristocratic society.',
-    authorFullName: 'Jane Austen',
-  },
-];
+  ngOnDestry() {
+    this.subscription.unsubscribe();
+  }
+}

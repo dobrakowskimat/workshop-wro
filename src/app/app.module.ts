@@ -12,9 +12,10 @@ import '@angular/common/locales/global/pl';
 import { HttpClientModule } from '@angular/common/http';
 import { BookslistComponent } from './main/books/bookslist/bookslist.component';
 import { BookComponent } from './main/books/book/book.component';
+import { BookDetailsComponent } from './main/books/book-details/book-details.component';
 
 @NgModule({
-  declarations: [AppComponent, BookslistComponent, BookComponent],
+  declarations: [AppComponent, BookslistComponent, BookComponent, BookDetailsComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

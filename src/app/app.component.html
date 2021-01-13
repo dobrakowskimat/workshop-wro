@@ -1,5 +1,15 @@
+<app-navigation [view]="routeValue"></app-navigation>
+
 <div [ngSwitch]="routeValue">
-  <app-bookslist (selectedBook)="selectBook($event)" *ngSwitchCase="view.BookList"></app-bookslist>
-  <app-book-details [selectedBook]="selectedBook" *ngSwitchCase="view.BookDetails"></app-book-details>
+  <app-bookslist
+    (selectedBook)="selectBook($event)"
+    *ngSwitchCase="view.BookList"
+  >
+  </app-bookslist>
+  <app-book-details
+    [selectedBook]="selectedBook"
+    *ngSwitchCase="view.BookDetails"
+  >
+  </app-book-details>
   <!-- <app-shopping-cart *ngSwitchCase="view.BookDetails">...</app-shopping-cart> -->
 </div>

@@ -1,7 +1,7 @@
 <!-- <ul>
   <app-book *ngFor="let book of books$ | async" class="book" [childBook]="book" (bookDeleted)="deleteBook($event)"></app-book>
 </ul> -->
-<div *ngFor="let book of books$ | async">
+<div *ngFor="let book of books$ | async" class="book-container">
   <app-book
     class="book"
     [childBook]="book"

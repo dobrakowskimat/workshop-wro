@@ -14,12 +14,15 @@ import { BookslistComponent } from './main/books/bookslist/bookslist.component';
 import { BookComponent } from './main/books/book/book.component';
 import { BookDetailsComponent } from './main/books/book-details/book-details.component';
 import { ShoppingCartComponent } from './main/books/shopping-cart/shopping-cart.component';
-import { NavigationComponent } from './main/navigation/navigation.component';
+import { NavigationComponent } from './core/navigation/navigation.component';
 import { BookInShoppingCartComponent } from './main/books/book-in-shopping-cart/book-in-shopping-cart.component';
-
+import { EditBookComponent } from './main/books/edit-book/edit-book.component';
+import { CommonModule } from '@angular/common';
 @NgModule({
-  declarations: [AppComponent, BookslistComponent, BookComponent, BookDetailsComponent, ShoppingCartComponent, NavigationComponent, BookInShoppingCartComponent],
+  declarations: [AppComponent, BookslistComponent, BookComponent, BookDetailsComponent, ShoppingCartComponent, NavigationComponent, BookInShoppingCartComponent, EditBookComponent],
+
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

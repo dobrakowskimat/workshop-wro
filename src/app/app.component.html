@@ -6,4 +6,3 @@
   <app-book-details [selectedBook]="selectedBook" (selectedBookToShoppingCard)="bookAddedToShoppingCard($event)" *ngSwitchCase="view.BookDetails"></app-book-details>
   <app-shopping-cart [bookListInShoppingCart]="shoppingCard" (bookRemoved)="bookRemovedFromShoppingCart($event)" *ngSwitchCase="view.ShoppingCart">...</app-shopping-cart>
 </div>
-</div>

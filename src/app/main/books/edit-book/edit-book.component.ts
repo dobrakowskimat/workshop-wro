@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-book',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditBookComponent implements OnInit {
 
-  constructor() { }
+  bookForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.bookForm = this.fb.group({
+      title: this.fb.control('', Validators.required),
+      subtitle: this.fb.control(''),
+      originallyPublishedYear: this.fb.control(''),
+      seriesTitle: this.fb.control(''),
+      pageCount: this.fb.control(''),
+      description: this.fb.control(''),
+      price: this.fb.control(''),
+      publishDate: this.fb.control(''),
+    });
   }
 
+  onSubmit() {
+    console.log(this.bookForm.value);
+  }
 }

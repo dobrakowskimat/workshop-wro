@@ -18,6 +18,7 @@ import { NavigationComponent } from './core/navigation/navigation.component';
 import { BookInShoppingCartComponent } from './main/books/book-in-shopping-cart/book-in-shopping-cart.component';
 import { EditBookComponent } from './main/books/edit-book/edit-book.component';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent, BookslistComponent, BookComponent, BookDetailsComponent, ShoppingCartComponent, NavigationComponent, BookInShoppingCartComponent, EditBookComponent],
 
@@ -29,6 +30,7 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatButtonModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent],
 })

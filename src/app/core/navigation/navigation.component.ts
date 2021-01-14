@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { View } from '../books/shared/enums';
+import { View } from '../../main/books/shared/enums';
 
 @Component({
   selector: 'app-navigation',

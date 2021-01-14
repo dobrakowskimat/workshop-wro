@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap, map } from 'rxjs/operators';
 import { View } from './main/books/shared/enums';
 import { Book, BookPayload } from './main/books/shared/models/book.model';
 import { BooksService } from './main/books/shared/services/books/books.service';
@@ -21,6 +21,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private subsription = new Subscription();
   private booksUpdated$ = new BehaviorSubject(null);
   private showDetails$ = new Subject<string>();
+
+  booksInShoppingCart: Book[] = [];
 
   constructor(private readonly booksService: BooksService) {}
 
@@ -74,6 +76,23 @@ export class AppComponent implements OnInit, OnDestroy {
 
   selectBook(book: Book) {
     this.selectedBook = book;
-    this.routeValue = this.view.BookDetails;
+    this.navigateTo(View.BookDetails);
+  }
+
+  navigateTo(viewSelected: View){
+    this.routeValue = viewSelected;
+  }
+
+  addBookToShoppingCart(book: Book){
+    this.booksInShoppingCart.push(book);
+    // this.booksInShoppingCart$.pipe(map(b => {
+    //   b.push(book);
+    // })).subscribe();
+  }
+
+  removedFromCart(book: Book){
+    var indexToRemove = this.booksInShoppingCart.findIndex(item => item.id == book.id);
+
+    this.booksInShoppingCart.splice(indexToRemove, 1);
   }
 }

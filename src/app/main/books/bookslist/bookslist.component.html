@@ -1,15 +1,9 @@
-<!-- <ul>
-  <app-book *ngFor="let book of books$ | async" class="book" [childBook]="book" (bookDeleted)="deleteBook($event)"></app-book>
-</ul> -->
+<h1>Books list</h1>
 <div *ngFor="let book of books$ | async">
   <app-book
     class="book"
     [childBook]="book"
     (bookDeleted)="deleteBook($event)"
+    (selectBook)="selectBook($event)"
   ></app-book>
-</div>
-<div>
-  <button mat-flat-button color="primary" (click)="addDummyBook()">
-    Add dummy Book
-  </button>
 </div>

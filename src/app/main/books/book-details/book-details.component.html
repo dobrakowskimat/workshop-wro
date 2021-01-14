@@ -1,7 +1,6 @@
-<!-- <div>
-  <div>{{ childBook.title }}</div>
-  <div>{{ childBook.subtitle }}</div>
-  <button mat-flat-button color="primary" (click)="deleteBook(childBook)">
-    delete
-  </button>
-</div> -->
+<div class="details">
+  <div>Title: {{ selectedBook.title }}</div>
+  <div>Subtitle: {{ selectedBook.subtitle || "-"}}</div>
+  <div>Author: {{ selectedBook.authorFullName }}</div>
+  <button mat-flat-button color="accent" (click)="addBookToShoppingCart(selectedBook)">Add to shopping cart</button>
+</div>

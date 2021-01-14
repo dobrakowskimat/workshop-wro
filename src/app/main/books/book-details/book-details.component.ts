@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Book } from '../shared/models/book.model';
 
 @Component({
   selector: 'app-book-details',
@@ -6,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./book-details.component.scss'],
 })
 export class BookDetailsComponent implements OnInit {
+  @Input() selectedBook: Book;
+  @Output() addedBook = new EventEmitter<Book>();
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  addBookToShoppingCart(book: Book){
+    this.addedBook.emit(book);
+  }
 }

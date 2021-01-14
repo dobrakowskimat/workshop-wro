@@ -1,0 +1,7 @@
+<h1>Shopping cart</h1>
+<div *ngFor="let book of booksInShoppingCart">
+  <app-shopping-cart-book
+    [childBook]="book"
+    (bookRemoved)="removedFromCart($event)"
+  ></app-shopping-cart-book>
+</div>

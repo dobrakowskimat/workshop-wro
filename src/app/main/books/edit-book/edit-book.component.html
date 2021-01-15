@@ -1,7 +1,26 @@
-<form>
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
   <div *ngIf="true">Add New user</div>
-    <input type="text" />   <input type="text" />   <input type="text" />
-    <input type="text" />   <input type="text" />   <input type="text" />
-    <input type="text" />
-  …
+  <div>
+    <span>Title: </span>
+      <input type="text" formControlName="title" />
+  </div>
+    <input type="text" formControlName="subtitle" />   
+  <input type="text" formControlName="originallyPublishedYear" />
+    <input type="text" formControlName="seriesTitle" />   
+  <input type="text" formControlName="pageCount" />
+    <input type="text" formControlName="description" />   
+  <input type="text" formControlName="price" />
+  <input type="date" formControlName="publishDate" />
+  <button
+    mat-flat-button
+    color="primary"
+    type="submit"
+    [disabled]="bookForm.invalid"
+  >
+    Submit
+  </button>
 </form>
+
+<div>
+  <div></div>
+</div>

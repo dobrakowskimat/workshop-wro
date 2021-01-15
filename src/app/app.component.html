@@ -1,4 +1,7 @@
-<app-navigation [view]="routeValue"></app-navigation>
+<app-navigation
+  [view]="routeValue"
+  (viewSelected)="selectRoute($event)"
+></app-navigation>
 
 <div [ngSwitch]="routeValue">
   <app-bookslist
@@ -11,5 +14,6 @@
     *ngSwitchCase="view.BookDetails"
   >
   </app-book-details>
+  <app-edit-book *ngSwitchCase="view.AddBook"> </app-edit-book>
   <!-- <app-shopping-cart *ngSwitchCase="view.BookDetails">...</app-shopping-cart> -->
 </div>

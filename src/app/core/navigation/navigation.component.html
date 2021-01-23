@@ -12,7 +12,7 @@
         <a class="btn nav-link" [ngClass]="{ active: selectedRoute === view.ShoppingCart }" (click)="selectView(view.ShoppingCart)">Shopping Cart</a>
       </li>
       <li class="nav-item">
-        <a class="btn nav-link" [ngClass]="{ active: selectedRoute === view.AddBook }" (click)="selectView(view.AddBook)">Add Book</a>
+        <a class="btn nav-link" [ngClass]="{ active: selectedRoute === view.AddBook }" (click)="selectView(view.AddBook); clearEditedBook()">Add Book</a>
       </li>
     </ul>
   </div>

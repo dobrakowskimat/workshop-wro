@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://workshop-wro.azurewebsites.net/api/'
+  apiUrl: 'https://workshop-wro.azurewebsites.net/api'
 };
 
 /*

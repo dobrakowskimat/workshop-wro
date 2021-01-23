@@ -10,8 +10,11 @@
       <div><b>Page Count:</b><br/> {{ selectedBook.pageCount }}</div>
       <div><b>Description:</b><br/> {{ selectedBook.description }}</div>
       <div><b>Author:</b><br/> {{ selectedBook.authorFullName }}</div>
+      <div><b>Price:</b><br/> {{ selectedBook.price }}</div>
+      <div><b>Publish Date:</b><br/> {{ selectedBook.publishDate }}</div>
       <hr/>
       <button type="button" class="btn btn-success" (click)="addToShoppingCard(selectedBook)">Add to shopping cart</button>
+      <button type="button" class="btn btn-warning ml-4" aria-label="Left Align" (click)="editBook(selectedBook)">Edit book</button>
     </div>
   </div>
 </div>

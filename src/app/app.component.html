@@ -1,9 +1,9 @@
-<app-navigation [selectedRoute]="routeValue" (routeSelected)="navigateTo($event)"></app-navigation>
+<app-navigation [selectedRoute]="routeValue" (bookEdited)="bookEdited($event)" (routeSelected)="navigateTo($event)"></app-navigation>
 <div class="container">
 
 <div [ngSwitch]="routeValue">
   <app-bookslist (selectedBook)="selectBook($event)" *ngSwitchCase="view.BookList"></app-bookslist>
-  <app-book-details [selectedBook]="selectedBook" (selectedBookToShoppingCard)="bookAddedToShoppingCard($event)" *ngSwitchCase="view.BookDetails"></app-book-details>
+  <app-book-details [selectedBook]="selectedBook" (selectedBookToShoppingCard)="bookAddedToShoppingCard($event)" (editedBook)="bookEdited($event)" *ngSwitchCase="view.BookDetails"></app-book-details>
   <app-shopping-cart [bookListInShoppingCart]="shoppingCard" (bookRemoved)="bookRemovedFromShoppingCart($event)" *ngSwitchCase="view.ShoppingCart">...</app-shopping-cart>
-  <app-edit-book *ngSwitchCase="view.AddBook">...</app-edit-book>
+  <app-edit-book *ngSwitchCase="view.AddBook" [editedBook]="editedBook"></app-edit-book>
 </div>

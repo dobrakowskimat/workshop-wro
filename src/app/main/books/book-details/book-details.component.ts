@@ -10,6 +10,7 @@ export class BookDetailsComponent implements OnInit {
 
   @Input() selectedBook: Book;
   @Output() selectedBookToShoppingCard = new EventEmitter<Book>();
+  @Output() editedBook = new EventEmitter<Book>();
 
   constructor() {}
 
@@ -17,5 +18,9 @@ export class BookDetailsComponent implements OnInit {
 
   addToShoppingCard(selectedBook : Book) {
     this.selectedBookToShoppingCard.emit(selectedBook)
+  }
+
+  editBook(selectedBook : Book) {
+    this.editedBook.emit(selectedBook)
   }
 }

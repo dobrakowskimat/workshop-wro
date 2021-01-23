@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { View } from './main/books/shared/enums';
 import { Book, BookPayload } from './main/books/shared/models/book.model';
-import { BooksService } from './main/books/shared/services/books/books.service';
+import { BooksService } from './services/books.service';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
   book$: Observable<Book>;
   shoppingCard: Book[] = [];
   selectedBook: Book;
+  editedBook : Book;
   view = View;
   routeValue: View;
   private subsription = new Subscription();
@@ -29,10 +30,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.books$ = this.booksUpdated$.pipe(
-      switchMap(() => this.booksService.getAll())
+      switchMap(() => this.booksService.getBooks())
     );
     this.book$ = this.showDetails$.pipe(
-      switchMap((id) => this.booksService.get(id))
+      switchMap((id) => this.booksService.getBook(id))
     );
     this.routeValue = this.view.BookList;
   }
@@ -56,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.subsription.add(
       this.booksService
-        .create(book)
+        .addBook(book)
         .pipe(tap(() => this.booksUpdated$.next(null)))
         .subscribe()
     );
@@ -65,7 +66,7 @@ export class AppComponent implements OnInit, OnDestroy {
   deleteBook(id: string): void {
     this.subsription.add(
       this.booksService
-        .delete(id)
+        .deleteBook(id)
         .pipe(tap(() => this.booksUpdated$.next(null)))
         .subscribe()
     );
@@ -87,6 +88,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   bookAddedToShoppingCard(book: Book) {
     this.shoppingCard.indexOf(book) === -1 ? this.shoppingCard.push(book) : console.log("This book already in shopping cart");
+  }
+
+  bookEdited(book : Book) {
+    this.editedBook = book;
+    this.navigateTo(View.AddBook);
   }
 
   bookRemovedFromShoppingCart(book: Book) {

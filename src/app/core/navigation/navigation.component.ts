@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Book } from 'src/app/main/books/shared/models/book.model';
 import { View } from '../../main/books/shared/enums';
 
 @Component({
@@ -10,6 +11,7 @@ export class NavigationComponent implements OnInit {
 
   @Input() selectedRoute: View;
   @Output() routeSelected = new EventEmitter<View>();
+  @Output() bookEdited = new EventEmitter<Book>();
   view = View;
 
   constructor() { }
@@ -18,6 +20,10 @@ export class NavigationComponent implements OnInit {
   }
 
   selectView(view : View) {
-    this.routeSelected.emit(view)
+    this.routeSelected.emit(view);
+  }
+
+  clearEditedBook() {
+    this.bookEdited.emit(null);
   }
 }

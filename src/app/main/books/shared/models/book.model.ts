@@ -6,10 +6,10 @@ export interface BookPayload {
   pageCount: number;
   description: string;
   authorFullName: string;
-  //publishDate: Date;
+  publishDate: Date;
+  price: number
 }
 
 export interface Book extends BookPayload {
-  id: number;
-  //createDateUtc: Date;
+  id: string;
 }

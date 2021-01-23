@@ -26,14 +26,15 @@ export class BookslistComponent implements OnInit, OnDestroy {
     this.books$ = this.booksService.getBooks().pipe(
       map((books) => {
         return books.filter((book) => {
-          return book.originallyPublishedYear > 1950;
+          return book
+          // return book.originallyPublishedYear > 1950;
         });
       })
     );
   }
 
   deleteBook(book: Book) {
-    // this.books = this.books.filter((b) => book.id !== book.id);
+    this.booksService.deleteBook(book.id).subscribe((res) => console.log('Book succesfully removed'));
   }
 
   addBook(book: BookPayload) {
@@ -42,21 +43,6 @@ export class BookslistComponent implements OnInit, OnDestroy {
         .addBook(book)
         .subscribe((res) => console.log('Book successfully added'))
     );
-  }
-
-  addDummyBook() {
-    const book = {
-      title: 'The Grapes of Wrath',
-      subtitle: null,
-      originallyPublishedYear: 1939,
-      seriesTitle: null,
-      pageCount: 430,
-      description:
-        'The Grapes of Wrath is set in the Great Depression and describes a family of sharecroppers, the Joads, who were driven from their land due to the dust storms of the Dust Bowl.',
-      authorFullName: 'John Stainbeck',
-      publishDate: new Date('2014-08-17'),
-    } as BookPayload;
-    this.addBook(book);
   }
 
   ngOnDestroy() {

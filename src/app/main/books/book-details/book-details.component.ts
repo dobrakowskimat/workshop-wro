@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Book } from '../shared/models/book.model';
 
 @Component({
@@ -7,12 +7,14 @@ import { Book } from '../shared/models/book.model';
   styleUrls: ['./book-details.component.scss'],
 })
 export class BookDetailsComponent implements OnInit {
-
   @Input() selectedBook: Book;
+  @Output() selectedBookForEdit = new EventEmitter<Book>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-
+  editBook(book: Book) {
+    this.selectedBookForEdit.emit(book);
+  }
 }

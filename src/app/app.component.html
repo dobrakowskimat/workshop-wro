@@ -11,9 +11,11 @@
   </app-bookslist>
   <app-book-details
     [selectedBook]="selectedBook"
+    (selectedBookForEdit)="editBook($event)"
     *ngSwitchCase="view.BookDetails"
   >
   </app-book-details>
-  <app-edit-book *ngSwitchCase="view.AddBook"> </app-edit-book>
+  <app-edit-book [selectedBook]="selectedBook" *ngSwitchCase="view.AddBook">
+  </app-edit-book>
   <!-- <app-shopping-cart *ngSwitchCase="view.BookDetails">...</app-shopping-cart> -->
 </div>

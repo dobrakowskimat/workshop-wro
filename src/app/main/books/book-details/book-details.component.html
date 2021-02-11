@@ -1,7 +1,9 @@
 <div class="container">
   <div class="card">
     <div class="card-body">
-      <h2 class="card-title">{{ selectedBook.title }}</h2>
+      <h2 *ngIf="selectedBook?.title" class="card-title">
+        {{ selectedBook.title }}
+      </h2>
       <div><b>SubTitle:</b> {{ selectedBook.subtitle || "---" }}</div>
       <div>
         <b>Orginal Published Yead:</b>

@@ -9,12 +9,14 @@
     *ngSwitchCase="view.BookList"
   >
   </app-bookslist>
-  <app-book-details
-    [selectedBook]="selectedBook"
-    (selectedBookForEdit)="editBook($event)"
-    *ngSwitchCase="view.BookDetails"
-  >
-  </app-book-details>
+  <ng-container *ngSwitchCase="view.BookDetails">
+    <app-book-details
+      [selectedBook]="selectedBook"
+      (selectedBookForEdit)="editBook($event)"
+      *ngIf="selectedBook"
+    >
+    </app-book-details>
+  </ng-container>
   <app-edit-book [selectedBook]="selectedBook" *ngSwitchCase="view.AddBook">
   </app-edit-book>
   <!-- <app-shopping-cart *ngSwitchCase="view.BookDetails">...</app-shopping-cart> -->

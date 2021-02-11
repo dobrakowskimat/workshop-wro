@@ -1,0 +1,15 @@
+form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+.control {
+  display: flex;
+  padding: 5px;
+  input {
+    margin-left: 5px;
+  }
+}

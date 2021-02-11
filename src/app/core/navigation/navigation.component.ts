@@ -19,7 +19,9 @@ export class NavigationComponent implements OnInit {
     switch (view) {
       case View.AddBook:
         this.viewSelected.emit(view);
-
+        break;
+      case View.BookList:
+        this.viewSelected.emit(view);
         break;
 
       default:

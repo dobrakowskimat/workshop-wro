@@ -1,25 +1,37 @@
 <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-  <div *ngIf="true">Add New user</div>
-  <div>
-    <span>Title: </span>
-      <input type="text" formControlName="title" />
-  </div>
-    <input type="text" formControlName="subtitle" />   
-  <input type="text" formControlName="originallyPublishedYear" />
-    <input type="text" formControlName="seriesTitle" />   
-  <input type="text" formControlName="pageCount" />
-    <input type="text" formControlName="description" />   
-  <input type="date" formControlName="publishDate" />
-  <button
-    mat-flat-button
-    color="primary"
-    type="submit"
-    [disabled]="bookForm.invalid"
-  >
-    Submit
-  </button>
+    <div *ngIf="selectedBook">Edit book</div>
+    <div *ngIf="!selectedBook">Add new book</div>
+    <div class="control">
+        <span>Title: </span>
+          <input type="text" formControlName="title" />
+    </div>
+    <div class="control">
+        <span>Subtitle: </span>
+        <input type="text" formControlName="subtitle" />   
+    </div>
+    <div class="control">
+        <span>year: </span>
+        <input type="text" formControlName="originallyPublishedYear" />
+    </div>
+    <div class="control">
+        <span>series: </span>
+          <input type="text" formControlName="seriesTitle" />   
+    </div>
+    <div class="control">
+        <span>pageCount: </span>
+        <input type="text" formControlName="pageCount" />
+    </div>
+    <div class="control">
+        <span>desc: </span>
+          <input type="text" formControlName="description" />   
+    </div>
+    <div class="control">
+        <span>date published: </span>
+        <input type="date" formControlName="publishDate" />
+    </div>
+    <button mat-flat-button color="primary" type="submit" [disabled]="bookForm.invalid">Submit</button>
 </form>
 
 <div>
-  <div></div>
+    <div></div>
 </div>

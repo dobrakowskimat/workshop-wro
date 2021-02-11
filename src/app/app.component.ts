@@ -25,12 +25,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private readonly booksService: BooksService) {}
 
   ngOnInit(): void {
-    this.books$ = this.booksUpdated$.pipe(
-      switchMap(() => this.booksService.getAll())
-    );
-    this.book$ = this.showDetails$.pipe(
-      switchMap((id) => this.booksService.get(id))
-    );
+    this.books$ = this.booksUpdated$.pipe(switchMap(() => this.booksService.getAll()));
+    this.book$ = this.showDetails$.pipe(switchMap((id) => this.booksService.get(id)));
     this.routeValue = this.view.BookList;
   }
 
@@ -55,7 +51,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.booksService
         .create(book)
         .pipe(tap(() => this.booksUpdated$.next(null)))
-        .subscribe()
+        .subscribe(),
     );
   }
 
@@ -64,7 +60,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.booksService
         .delete(id)
         .pipe(tap(() => this.booksUpdated$.next(null)))
-        .subscribe()
+        .subscribe(),
     );
   }
 
@@ -83,6 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   selectRoute(view: View) {
+    this.selectedBook = null;
     this.routeValue = view;
   }
 }

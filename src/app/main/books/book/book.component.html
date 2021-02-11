@@ -1,5 +1,5 @@
 <div>
-  <div>title: {{ childBook.title }}</div>
+  <div *ngIf="childBook.title">title: {{ childBook.title }}</div>
   <div *ngIf="childBook.subtitle">subtitle {{ childBook.subtitle }}</div>
   <div>author: {{ childBook.authorFullName }}</div>
   <button mat-flat-button color="primary" (click)="deleteBook(childBook)">

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { View } from 'src/app/main/books/shared/enums';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -7,25 +7,10 @@ import { View } from 'src/app/main/books/shared/enums';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  @Input() view: View;
-  @Output() viewSelected = new EventEmitter<View>();
-  View = View;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {}
-
-  navigate(view: View): void {
-    switch (view) {
-      case View.AddBook:
-        this.viewSelected.emit(view);
-        break;
-      case View.BookList:
-        this.viewSelected.emit(view);
-        break;
-
-      default:
-        this.viewSelected.emit(View.BookDetails);
-    }
+  ngOnInit(): void {
   }
+
 }

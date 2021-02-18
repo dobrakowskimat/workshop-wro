@@ -1,5 +1,9 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { delay, map, switchMap } from 'rxjs/operators';
 import { Book } from '../shared/models/book.model';
+import { BooksService } from '../shared/services/books/books.service';
 
 @Component({
   selector: 'app-book-details',
@@ -7,14 +11,18 @@ import { Book } from '../shared/models/book.model';
   styleUrls: ['./book-details.component.scss'],
 })
 export class BookDetailsComponent implements OnInit {
-  @Input() selectedBook: Book;
-  @Output() selectedBookForEdit = new EventEmitter<Book>();
 
-  constructor() {}
+  book$: Observable<Book>;
+  bookId$: Observable<string>;
 
-  ngOnInit(): void {}
+  constructor(private activeRoute: ActivatedRoute, private readonly booksService: BooksService) {}
+
+  ngOnInit(): void {
+    this.bookId$ = this.activeRoute.paramMap.pipe(map(params => params.get('id')));
+    this.book$ = this.bookId$.pipe(switchMap((id) => this.booksService.get(id)));
+  }
 
   editBook(book: Book) {
-    this.selectedBookForEdit.emit(book);
+    //TODO: /book/:id/edit
   }
 }

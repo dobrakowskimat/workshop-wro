@@ -5,7 +5,5 @@
   <button mat-flat-button color="primary" (click)="deleteBook(childBook)">
     delete
   </button>
-  <button mat-flat-button color="accent" (click)="showDetails(childBook)">
-    show details
-  </button>
+    <a mat-flat-button color="accent" [routerLink]="['/book', childBook.id]">show details</a>
 </div>

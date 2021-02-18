@@ -17,6 +17,7 @@ import { NavigationComponent } from './core/navigation/navigation.component';
 import { CommonModule } from '@angular/common';
 import { EditBookComponent } from './main/books/edit-book/edit-book.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule,
     MatButtonModule,
     ReactiveFormsModule,
+    RouterModule,
   ],
   bootstrap: [AppComponent],
 })

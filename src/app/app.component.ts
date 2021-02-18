@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
-import { View } from './main/books/shared/enums';
 import { Book, BookPayload } from './main/books/shared/models/book.model';
 import { BooksService } from './main/books/shared/services/books/books.service';
 
@@ -13,21 +12,13 @@ import { BooksService } from './main/books/shared/services/books/books.service';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'workshop-wro';
   today = new Date();
-  books$: Observable<Book[]>;
-  book$: Observable<Book>;
-  selectedBook: Book;
-  view = View;
-  routeValue: View;
+
   private subsription = new Subscription();
   private booksUpdated$ = new BehaviorSubject(null);
-  private showDetails$ = new Subject<string>();
 
   constructor(private readonly booksService: BooksService) {}
 
   ngOnInit(): void {
-    this.books$ = this.booksUpdated$.pipe(switchMap(() => this.booksService.getAll()));
-    this.book$ = this.showDetails$.pipe(switchMap((id) => this.booksService.get(id)));
-    this.routeValue = this.view.BookList;
   }
 
   ngOnDestroy(): void {
@@ -62,24 +53,5 @@ export class AppComponent implements OnInit, OnDestroy {
         .pipe(tap(() => this.booksUpdated$.next(null)))
         .subscribe(),
     );
-  }
-
-  showDetails(id: string): void {
-    this.showDetails$.next(id);
-  }
-
-  selectBook(book: Book) {
-    this.selectedBook = book;
-    this.routeValue = this.view.BookDetails;
-  }
-
-  editBook(book: Book) {
-    this.selectedBook = book;
-    this.routeValue = this.view.AddBook;
-  }
-
-  selectRoute(view: View) {
-    this.selectedBook = null;
-    this.routeValue = view;
   }
 }

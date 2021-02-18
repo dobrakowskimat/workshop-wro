@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-book',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-book.component.scss']
 })
 export class EditBookComponent implements OnInit {
+  name: FormControl;
+
 
   constructor() { }
 
   ngOnInit(): void {
+    this.name = new FormControl('dowolne');
   }
 
 }

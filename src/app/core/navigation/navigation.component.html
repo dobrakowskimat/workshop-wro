@@ -3,6 +3,7 @@
   color="primary"
   class="nav-button"
   [ngClass]="{ active: view === View.BookList }"
+  (click)="navigate(View.BookList)"
 >
   Book list
 </div>
@@ -14,4 +15,14 @@
   [ngClass]="{ active: view === View.ShoppingCart }"
 >
   Shopping Cart
+</div>
+
+<div
+  mat-flat-button
+  color="primary"
+  class="nav-button"
+  [ngClass]="{ active: view === View.AddBook }"
+  (click)="navigate(View.AddBook)"
+>
+  Add Book
 </div>

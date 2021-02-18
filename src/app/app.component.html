@@ -1,4 +1,6 @@
-<app-navigation [view]="routeValue"></app-navigation>
+<app-navigation [view]="routeValue"
+(viewSelected)="selectRoute($event)"
+></app-navigation>
 
 <div [ngSwitch]="routeValue">
   <app-bookslist

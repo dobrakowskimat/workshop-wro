@@ -76,4 +76,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.selectedBook = book;
     this.routeValue = this.view.BookDetails;
   }
+
+  selectRoute(view: View){
+    this.routeValue = view;
+  }
 }

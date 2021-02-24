@@ -4,6 +4,7 @@ import { Book, BookPayload } from '../shared/models/book.model';
 import { Subscription } from 'rxjs';
 import { BooksService } from 'src/app/services/books.service';
 import { rangeValidator } from '../shared/validators/range-validator';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-book',
@@ -15,7 +16,7 @@ export class EditBookComponent implements OnInit {
   subscription = new Subscription();
   @Input() selectedBook: Book;
 
-  constructor(private fb: FormBuilder, private booksService: BooksService) {}
+  constructor(private activeRoute: ActivatedRoute,private fb: FormBuilder, private booksService: BooksService) {}
 
   ngOnInit(): void {
     if (this.selectedBook != null) {

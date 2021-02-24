@@ -15,7 +15,7 @@
       <div><b>Author:</b> {{ selectedBook.authorFullName }}</div>
     </div>
   </div>
-  <button mat-flat-button color="primary" (click)="editBook(selectedBook)">
+  <button mat-flat-button color="primary" [routerLink]="['/book/', selectedBook.id,'edit']" (click)="editBook(selectedBook)">
     Edit
   </button>
 </div>

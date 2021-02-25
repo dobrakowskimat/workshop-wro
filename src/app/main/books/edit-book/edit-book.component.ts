@@ -17,7 +17,7 @@ export class EditBookComponent implements OnInit {
   subscription = new Subscription();
   editedBook$: Observable<Book>;
 
-  constructor(private activedRoute: ActivatedRoute,private fb: FormBuilder, private booksService: BooksService) {}
+  constructor(private activedRoute: ActivatedRoute, private fb: FormBuilder, private booksService: BooksService) {}
 
   ngOnInit(): void {
     this.bookForm = this.fb.group({
@@ -29,26 +29,25 @@ export class EditBookComponent implements OnInit {
       description: this.fb.control(''),
       publishDate: this.fb.control(''),
     });
-    this.editedBook$ = this.activedRoute.queryParamMap.pipe(
-      switchMap(
-      (params) =>{
-      return this.booksService.getBook(params.get('id'));
-    }),
+    this.editedBook$ = this.activedRoute.paramMap.pipe(
+      switchMap((params) => {
+        return this.booksService.getBook(params.get('id'));
+      }),
     );
-    this.subscription.add(this.editedBook$.subscribe(
-      editedBook => {
-        if(editedBook !== undefined){
+    this.subscription.add(
+      this.editedBook$.subscribe((editedBook) => {
+        if (editedBook !== undefined) {
           this.bookForm.patchValue({
             title: editedBook.title,
             subtitle: editedBook.subtitle,
             originallyPublishedYear: editedBook.originallyPublishedYear,
             seriesTitle: editedBook.seriesTitle,
             pageCount: editedBook.pageCount,
-            description: editedBook.description
-          })
+            description: editedBook.description,
+          });
         }
-      }
-    ));
+      }),
+    );
   }
 
   onSubmit() {

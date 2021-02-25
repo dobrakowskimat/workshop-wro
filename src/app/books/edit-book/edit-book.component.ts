@@ -29,7 +29,7 @@ export class EditBookComponent implements OnInit {
       description: this.fb.control(''),
       publishDate: this.fb.control(''),
     });
-    this.editedBook$ = this.activedRoute.queryParamMap.pipe(
+    this.editedBook$ = this.activedRoute.paramMap.pipe(
       switchMap(
       (params) =>{
       return this.booksService.getBook(params.get('id'));

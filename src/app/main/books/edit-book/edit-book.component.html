@@ -1,6 +1,6 @@
 <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-    <div *ngIf="selectedBook">Edit book</div>
-    <div *ngIf="!selectedBook">Add new book</div>
+    <!-- <div *ngIf="selectedBook">Edit book</div>
+    <div *ngIf="!selectedBook">Add new book</div> -->
     <div class="control">
         <span>Title: </span>
           <input type="text" formControlName="title" />

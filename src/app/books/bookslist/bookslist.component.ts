@@ -1,14 +1,8 @@
-import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BooksService } from 'src/app/services/books.service';
-import { Book, BookPayload } from '../shared/models/book.model';
+import { Book, BookPayload } from '../../main/books/shared/models/book.model';
 
 @Component({
   selector: 'app-bookslist',
@@ -28,7 +22,7 @@ export class BookslistComponent implements OnInit, OnDestroy {
         return books.filter((book) => {
           return book.originallyPublishedYear > 1950;
         });
-      })
+      }),
     );
   }
 
@@ -37,11 +31,7 @@ export class BookslistComponent implements OnInit, OnDestroy {
   }
 
   addBook(book: BookPayload) {
-    this.subscription.add(
-      this.booksService
-        .addBook(book)
-        .subscribe((res) => console.log('Book successfully added'))
-    );
+    this.subscription.add(this.booksService.addBook(book).subscribe((res) => console.log('Book successfully added')));
   }
 
   addDummyBook() {

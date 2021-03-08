@@ -18,9 +18,16 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [AppComponent, NavigationComponent],
-  imports: [CommonModule, BrowserModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, RouterModule],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    RouterModule,
     CoreHttpModule,
     NgxSpinnerModule,
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

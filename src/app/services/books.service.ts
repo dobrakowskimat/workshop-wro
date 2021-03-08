@@ -13,7 +13,7 @@ export class BooksService {
     return this.httpClient.get<Book[]>(`/books`);
   }
   getBook(id: string): Observable<Book> {
-    return this.httpClient.get<Book>(`${this.apiUrl}/books/${id}`);
+    return this.httpClient.get<Book>(`/books/${id}`);
   }
 
   addBook(book: BookPayload): Observable<Book> {

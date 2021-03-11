@@ -1,0 +1,71 @@
+<div class="container mt-5">
+  <div
+    *ngIf="book$ | async as selectedBook; else busyIndicator"
+    class="container"
+  >
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">{{ selectedBook.title }}</h2>
+        <div>
+          <b>SubTitle:</b><br />
+          {{ selectedBook.subtitle || "---" }}
+        </div>
+        <div>
+          <b>Orginal Published Yead:</b><br />
+          {{ selectedBook.originallyPublishedYear }}
+        </div>
+        <div>
+          <b>Series Title:</b><br />
+          {{ selectedBook.seriesTitle }}
+        </div>
+        <div>
+          <b>Page Count:</b><br />
+          {{ selectedBook.pageCount }}
+        </div>
+        <div>
+          <b>Description:</b><br />
+          {{ selectedBook.description }}
+        </div>
+        <div>
+          <b>Author:</b><br />
+          {{ selectedBook.authorFullName }}
+        </div>
+        <div>
+          <b>Price:</b><br />
+          {{ selectedBook.price }}
+        </div>
+        <div>
+          <b>Publish Date:</b><br />
+          {{ selectedBook.publishDate }}
+        </div>
+        <hr />
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteBook(selectedBook.id)"
+        >
+          Delete
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning ml-4"
+          aria-label="Left Align"
+          [routerLink]="['/book/book', selectedBook.id, 'edit']"
+        >
+          Edit book
+        </button>
+        <button
+          type="button"
+          class="btn btn-success ml-4"
+          (click)="addToShoppingCard(selectedBook)"
+        >
+          Add to shopping cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #busyIndicator>
+  <p>Please wait, loading data...</p>
+</ng-template>

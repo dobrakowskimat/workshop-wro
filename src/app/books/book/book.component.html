@@ -1,0 +1,13 @@
+<td>{{ childBook.title }}</td>
+<td>{{ childBook.subtitle }}</td>
+<td>{{ childBook.originallyPublishedYear }}</td>
+<td>{{ childBook.pageCount }}</td>
+<td>
+  <button
+    type="button"
+    class="btn btn-info btn-sm ml-2"
+    [routerLink]="['/book/book', childBook.id]"
+  >
+    Details
+  </button>
+</td>

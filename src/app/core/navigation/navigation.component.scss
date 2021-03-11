@@ -1,3 +1,16 @@
 .active {
   font-weight: 500;
 }
+
+.navbar-nav .nav-link {
+  cursor: pointer;
+}
+
+.btn.focus,
+.btn:focus {
+  box-shadow: none;
+}
+
+:focus {
+  outline: 0;
+}

@@ -1,9 +1,13 @@
-<app-navigation [selectedRoute]="routeValue" (bookEdited)="bookEdited($event)" (routeSelected)="navigateTo($event)"></app-navigation>
-<div class="container">
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-atom"
+  [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
+<app-navigation></app-navigation>
 
-<div [ngSwitch]="routeValue">
-  <app-bookslist (selectedBook)="selectBook($event)" *ngSwitchCase="view.BookList"></app-bookslist>
-  <app-book-details [selectedBook]="selectedBook" (selectedBookToShoppingCard)="bookAddedToShoppingCard($event)" (editedBook)="bookEdited($event)" *ngSwitchCase="view.BookDetails"></app-book-details>
-  <app-shopping-cart [bookListInShoppingCart]="shoppingCard" (bookRemoved)="bookRemovedFromShoppingCart($event)" *ngSwitchCase="view.ShoppingCart">...</app-shopping-cart>
-  <app-edit-book *ngSwitchCase="view.AddBook" [editedBook]="editedBook"></app-edit-book>
+<div class="container">
+  <router-outlet></router-outlet>
 </div>

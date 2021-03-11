@@ -1,5 +1,4 @@
 <div class="mt-5">
-
   <table class="table">
     <thead>
       <tr>
@@ -10,14 +9,13 @@
         <th scope="col">Actions</th>
       </tr>
     </thead>
-    <tbody >
-        <tr app-book
+    <tbody>
+      <tr
+        app-book
         *ngFor="let book of books$ | async"
-          class="book"
-          [childBook]="book"
-          (bookDeleted)="deleteBook($event)"
-          (selectBook)="selectBook($event)"
-        ></tr>
-  </tbody>
+        class="book"
+        [childBook]="book"
+      ></tr>
+    </tbody>
   </table>
 </div>

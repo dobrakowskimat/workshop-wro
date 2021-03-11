@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { BooksService } from 'src/app/services/books.service';
 import { Book } from '../shared/models/book.model';
 
 @Component({
@@ -8,18 +10,8 @@ import { Book } from '../shared/models/book.model';
 })
 export class BookComponent implements OnInit {
   @Input() childBook: Book;
-  @Output() bookDeleted = new EventEmitter<Book>();
-  @Output() selectBook = new EventEmitter<Book>();
 
   constructor() {}
 
   ngOnInit(): void {}
-
-  deleteBook(book: Book) {
-    this.bookDeleted.emit(book);
-  }
-
-  showDetails(book: Book) {
-    this.selectBook.emit(book);
-  }
 }

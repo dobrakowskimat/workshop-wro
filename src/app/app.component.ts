@@ -1,8 +1,15 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
-import { View } from './main/books/shared/enums';
-import { Book, BookPayload } from './main/books/shared/models/book.model';
+import { View } from './books/shared/enums';
+import { Book, BookPayload } from './books/shared/models/book.model';
 import { BooksService } from './services/books.service';
 
 @Component({
@@ -17,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
   book$: Observable<Book>;
   shoppingCard: Book[] = [];
   selectedBook: Book;
-  editedBook : Book;
+  editedBook: Book;
   view = View;
   routeValue: View;
   private subsription = new Subscription();
@@ -25,8 +32,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private showDetails$ = new Subject<string>();
 
   constructor(private readonly booksService: BooksService) {}
-
-
 
   ngOnInit(): void {
     this.books$ = this.booksUpdated$.pipe(
@@ -74,10 +79,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   showDetails(id: string): void {
     this.showDetails$.next(id);
-    this.navigateTo(View.BookDetails)
+    this.navigateTo(View.BookDetails);
   }
 
-  navigateTo(viewSelected : View) {
+  navigateTo(viewSelected: View) {
     this.routeValue = viewSelected;
   }
 
@@ -87,18 +92,22 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   bookAddedToShoppingCard(book: Book) {
-    this.shoppingCard.indexOf(book) === -1 ? this.shoppingCard.push(book) : console.log("This book already in shopping cart");
+    this.shoppingCard.indexOf(book) === -1
+      ? this.shoppingCard.push(book)
+      : console.log('This book already in shopping cart');
   }
 
-  bookEdited(book : Book) {
+  bookEdited(book: Book) {
     this.editedBook = book;
     this.navigateTo(View.AddBook);
   }
 
   bookRemovedFromShoppingCart(book: Book) {
-    const index: number = this.shoppingCard.findIndex(item => item.id == book.id);
+    const index: number = this.shoppingCard.findIndex(
+      (item) => item.id == book.id
+    );
     if (index !== -1) {
       this.shoppingCard.splice(index, 1);
+    }
   }
-}
 }

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Book, BookPayload } from '../main/books/shared/models/book.model';
 
 @Injectable({
@@ -10,17 +9,18 @@ import { Book, BookPayload } from '../main/books/shared/models/book.model';
 export class BooksService {
   constructor(private httpClient: HttpClient) {}
 
-  apiUrl: string = environment.apiUrl;
-
   getBooks(): Observable<Book[]> {
-    return this.httpClient.get<Book[]>(`${this.apiUrl}/books`);
+    return this.httpClient.get<Book[]>(`/books`);
+  }
+  getBook(id: string): Observable<Book> {
+    return this.httpClient.get<Book>(`/books/${id}`);
   }
 
   addBook(book: BookPayload): Observable<Book> {
-    return this.httpClient.post<Book>(`${this.apiUrl}/books`, book);
+    return this.httpClient.post<Book>(`/books`, book);
   }
 
   editBook(book: BookPayload): Observable<Book> {
-    return this.httpClient.put<Book>(`${this.apiUrl}books`, book);
+    return this.httpClient.put<Book>(`books`, book);
   }
 }

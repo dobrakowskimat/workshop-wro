@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Book } from '../shared/models/book.model';
+import { Book } from '../../main/books/shared/models/book.model';
 
 @Component({
   selector: 'app-book',
@@ -11,9 +11,7 @@ export class BookComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   deleteBook(book: Book) {
     //TODO:

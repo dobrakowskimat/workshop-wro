@@ -1,6 +1,6 @@
 <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-    <div *ngIf="selectedBook">Edit book</div>
-    <div *ngIf="!selectedBook">Add new book</div>
+    <!-- <div *ngIf="selectedBook">Edit book</div>
+    <div *ngIf="!selectedBook">Add new book</div> -->
     <div class="control">
         <span>Title: </span>
           <input type="text" formControlName="title" />
@@ -24,10 +24,6 @@
     <div class="control">
         <span>desc: </span>
           <input type="text" formControlName="description" />   
-    </div>
-    <div class="control">
-        <span>date published: </span>
-        <input type="date" formControlName="publishDate" />
     </div>
     <button mat-flat-button color="primary" type="submit" [disabled]="bookForm.invalid">Submit</button>
 </form>

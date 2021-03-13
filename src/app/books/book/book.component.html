@@ -1,0 +1,7 @@
+<div>
+    <div *ngIf="childBook.title">title: {{ childBook.title }}</div>
+    <div *ngIf="childBook.subtitle">subtitle {{ childBook.subtitle }}</div>
+    <div>author: {{ childBook.authorFullName }}</div>
+    <button mat-flat-button color="primary" (click)="deleteBook(childBook)">delete</button>
+    <a mat-flat-button color="accent" [routerLink]="['/book/book', childBook.id]">show details</a>
+</div>

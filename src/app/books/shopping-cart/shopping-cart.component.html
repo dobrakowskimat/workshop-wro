@@ -1,5 +1,4 @@
 <div class="mt-5">
-
   <table class="table">
     <thead>
       <tr>
@@ -7,13 +6,19 @@
         <th scope="col">Actions</th>
       </tr>
     </thead>
-    <tbody >
-        <tr app-book-in-shopping-cart
-        *ngFor="let book of bookListInShoppingCart"
+    <tbody>
+      <ng-container *ngIf="shoppingCart.length > 0">
+        <tr
+          *ngFor="let book of shoppingCart"
           class="book"
           [childBook]="book"
           (bookRemoved)="bookRemovedFromShoppingCart($event)"
-        ></tr>
-  </tbody>
+        >
+          {{
+            book.title
+          }}
+        </tr>
+      </ng-container>
+    </tbody>
   </table>
 </div>

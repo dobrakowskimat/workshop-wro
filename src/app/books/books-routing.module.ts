@@ -4,6 +4,7 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookslistComponent } from './bookslist/bookslist.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'shopping-cart',
-    redirectTo: 'book-list',
+    component: ShoppingCartComponent,
   },
 ];
 

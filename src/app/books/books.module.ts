@@ -10,6 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { BooksRoutingModule } from './books-routing.module';
 import { AddBookComponent } from './add-book/add-book.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AddBookComponent } from './add-book/add-book.component';
     BookDetailsComponent,
     EditBookComponent,
     AddBookComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     CommonModule,

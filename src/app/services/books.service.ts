@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, ReplaySubject, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Book, BookPayload } from '../books/shared/models/book.model';
 
@@ -8,6 +8,10 @@ import { Book, BookPayload } from '../books/shared/models/book.model';
   providedIn: 'root',
 })
 export class BooksService {
+  // ReplaySubject zwróci wszystkie wyemitowane do tej pory wartości
+  // może być problem przy usuwaniu
+  public onAddBookToBucket$ = new ReplaySubject<Book>();
+
   constructor(private httpClient: HttpClient) {}
 
   httpOptions = {

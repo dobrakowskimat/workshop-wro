@@ -13,6 +13,7 @@ import { Book } from '../shared/models/book.model';
 export class BookDetailsComponent implements OnInit {
   bookId$: Observable<string>;
   book$: Observable<Book>;
+  @Output() bookToShoppingCard: EventEmitter<Book> = new EventEmitter();
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -29,8 +30,8 @@ export class BookDetailsComponent implements OnInit {
     );
   }
 
-  addToShoppingCard(selectedBook: Book) {
-    //   this.selectedBookToShoppingCard.emit(selectedBook)
+  addToShoppingCard(book: Book) {
+    this.booksService.onAddBookToBucket$.next(book);
   }
 
   deleteBook(bookId: string) {

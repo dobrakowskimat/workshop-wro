@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CoreHttpModule } from './core/core-http/core-http.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent, NavigationComponent],
@@ -27,6 +28,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     RouterModule,
     CoreHttpModule,
     NgxSpinnerModule,
+    StoreModule.forRoot({}),
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

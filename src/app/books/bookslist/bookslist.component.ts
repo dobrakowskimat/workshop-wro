@@ -1,8 +1,10 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BooksService } from 'src/app/services/books.service';
 import { Book, BookPayload } from '../../main/books/shared/models/book.model';
+import { getBooks, State } from '../state/reducers/book.reducer';
 
 @Component({
   selector: 'app-bookslist',
@@ -11,10 +13,11 @@ import { Book, BookPayload } from '../../main/books/shared/models/book.model';
 })
 export class BookslistComponent implements OnInit, OnDestroy {
   books$: Observable<Book[]>;
+  booksStore$: Observable<Book[]>;
   subscription = new Subscription();
   @Output() selectedBook = new EventEmitter<Book>();
 
-  constructor(private booksService: BooksService) {}
+  constructor(private booksService: BooksService, private store: Store<State>) {}
 
   ngOnInit(): void {
     this.books$ = this.booksService.getBooks().pipe(
@@ -24,6 +27,8 @@ export class BookslistComponent implements OnInit, OnDestroy {
         });
       }),
     );
+
+    this.booksStore$ = this.store.select(getBooks);
   }
 
   deleteBook(book: Book) {
@@ -32,6 +37,10 @@ export class BookslistComponent implements OnInit, OnDestroy {
 
   addBook(book: BookPayload) {
     this.subscription.add(this.booksService.addBook(book).subscribe((res) => console.log('Book successfully added')));
+  }
+
+  addBookStore(book: BookPayload) {
+    this.store.dispatch({type: })
   }
 
   addDummyBook() {

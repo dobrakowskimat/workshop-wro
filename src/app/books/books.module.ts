@@ -9,9 +9,18 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { BooksRoutingModule } from './books-routing.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [BookslistComponent, BookComponent, BookDetailsComponent, EditBookComponent],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, FlexLayoutModule, MatButtonModule, BooksRoutingModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    BooksRoutingModule,
+    StoreModule.forFeature('books', {}),
+  ],
 })
 export class BooksModule {}

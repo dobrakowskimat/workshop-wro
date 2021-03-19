@@ -1,26 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 import { Book } from '../../../main/books/shared/models/book.model';
 
-// export const LOAD_BOOKS = 'LOAD_BOOKS';
-// export const LOAD_BOOKS_SUCCESS = 'LOAD_BOOKS_SUCCESS';
-// export const LOAD_BOOKS_FAIL = 'LOAD_BOOKS_FAIL';
-
-// export class LoadCompaniesAction {
-//   readonly type = LOAD_BOOKS;
-// }
-
 // export class LoadCompaniesSuccessAction {
 //   readonly type = LOAD_BOOKS_SUCCESS;
 //   constructor(public payload: Book[]) {}
 // }
 
-// export class LoadCompaniesFailAction {
-//   readonly type = LOAD_BOOKS_FAIL;
-// }
+export const selectBook = createAction('[Book] Set selected Book', props<{ book: Book }>());
 
-export const getBooksAction = createAction(
-  '[Book] Set selected Book',
-  props<{book: Book}>
-)
+export const loadBooks = createAction('[Book] Load books');
+export const loadBooksSuccess = createAction('[Book] Load books Success', props<{ bookList: Book[] }>());
+export const loadBooksFail = createAction('[Book] Load books Fail', props<{ error: string }>());
 
-// export type Action = LoadCompaniesAction | LoadCompaniesSuccessAction | LoadCompaniesFailAction;
+export const loadBookById = createAction('[Book] Load book by id');

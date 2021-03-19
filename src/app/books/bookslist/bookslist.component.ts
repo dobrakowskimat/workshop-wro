@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { BooksService } from 'src/app/services/books.service';
 import { Book, BookPayload } from '../../main/books/shared/models/book.model';
 import { getBooks, State } from '../state/reducers/book.reducer';
+import * as BookActions from '../state/actions/book.actions';
 
 @Component({
   selector: 'app-bookslist',
@@ -39,10 +40,6 @@ export class BookslistComponent implements OnInit, OnDestroy {
     this.subscription.add(this.booksService.addBook(book).subscribe((res) => console.log('Book successfully added')));
   }
 
-  addBookStore(book: BookPayload) {
-    this.store.dispatch({type: })
-  }
-
   addDummyBook() {
     const book = {
       title: 'The Grapes of Wrath',
@@ -64,5 +61,9 @@ export class BookslistComponent implements OnInit, OnDestroy {
 
   selectBook(book: Book) {
     this.selectedBook.emit(book);
+  }
+
+  selectBookStore(book: Book) {
+    this.store.dispatch(BookActions.selectBook({ book }));
   }
 }

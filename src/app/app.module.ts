@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 import { CoreHttpModule } from './core/core-http/core-http.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent, NavigationComponent],
@@ -29,6 +30,7 @@ import { StoreModule } from '@ngrx/store';
     CoreHttpModule,
     NgxSpinnerModule,
     StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
